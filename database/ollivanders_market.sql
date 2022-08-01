@@ -11,15 +11,15 @@ USE `ollivanders_market`;
 -- --------------------------------------------------------
 
 --
--- Estructura para la tabla `categorias`
+-- Estructura para la tabla `categoria`
 --
-CREATE TABLE `categorias` (
+CREATE TABLE `categoria` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5;
 
-INSERT INTO `categorias` (`id`, `nombre`) VALUES
+INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (1, 'Varitas'),
 (2, 'Accesorios'),
 (3, 'Indumentaria'),
@@ -106,7 +106,7 @@ CREATE TABLE `usuario` (
 ALTER TABLE `producto`
   ADD CONSTRAINT `producto_ibfk_1`
   FOREIGN KEY (`id_categoria`)
-  REFERENCES `categorias` (`id`)
+  REFERENCES `categoria` (`id`)
   ON UPDATE CASCADE;
 
 --

@@ -16,8 +16,7 @@ class Producto extends ModeloPadre
             'precio' => null,
             'id_categoria' => null,
             'fecha_alta' => $fecha,
-            'fecha_modificacion' => $fecha,
-            'fecha_baja' => null
+            'fecha_modificacion' => $fecha
         ));
     }
 
@@ -58,7 +57,7 @@ class Producto extends ModeloPadre
     {
         $fecha = date('Y-m-d H:i:s');
         $consulta = $cnx->prepare('
-            INSERT INTO productos(nombre, descripcion, id_categoria, precio, fecha_alta, fecha_modificacion)
+            INSERT INTO producto(nombre, descripcion, id_categoria, precio, fecha_alta, fecha_modificacion)
             VALUES(:nombre, :descripcion, :id_categoria, :precio, :fecha_alta, :fecha_modificacion)
         ');
         $consulta->bindValue(':nombre', $this->nombre);
@@ -75,7 +74,7 @@ class Producto extends ModeloPadre
     {
         $fecha = date('Y-m-d H:i:s');
         $consulta = $cnx->prepare('
-            UPDATE productos SET 
+            UPDATE producto SET 
                 nombre = :nombre,
                 descripcion = :descripcion,
                 id_categoria = :id_categoria,
@@ -94,13 +93,9 @@ class Producto extends ModeloPadre
 
     public function delete(Cnx $cnx)
     {
-        $fecha = date('Y-m-d H:i:s');
         $consulta = $cnx->prepare('
-            UPDATE productos SET
-                fecha_baja = :fecha_baja
-            WHERE id = :id
+            DELETE FROM producto WHERE id = :id
         ');
-        $consulta->bindValue(':fecha_baja', $fecha);
         $consulta->bindValue(':id', $this->id);
         $consulta->execute();
     }
@@ -109,7 +104,7 @@ class Producto extends ModeloPadre
     {
         $consulta = $cnx->prepare('
             SELECT id, nombre, descripcion, precio, id_categoria
-            FROM productos
+            FROM producto
             WHERE id = :id
         ');
         $consulta->bindValue(':id', $id);
@@ -122,10 +117,9 @@ class Producto extends ModeloPadre
     {
         $consulta = $cnx->prepare('
             SELECT p.id, p.nombre, p.precio, p.id_categoria, c.nombre nombre_categoria
-            FROM productos p
-            INNER JOIN categorias c            
+            FROM producto p
+            INNER JOIN categoria c            
             ON p.id_categoria = c.id
-            WHERE p.fecha_baja IS NULL
             ORDER BY p.id
         ');
         $consulta->execute();
@@ -139,10 +133,9 @@ class Producto extends ModeloPadre
 
         $consulta = $cnx->prepare('
             SELECT p.id, p.nombre, p.precio, p.id_categoria, c.nombre nombre_categoria
-            FROM productos p
-            INNER JOIN categorias c
+            FROM producto p
+            INNER JOIN categoria c
             ON p.id_categoria = c.id
-            WHERE p.fecha_baja IS NULL
             ORDER by p.id
             LIMIT :desde, :cuantos
         ');
@@ -154,16 +147,4 @@ class Producto extends ModeloPadre
         return $consulta->fetchAll(PDO::FETCH_OBJ);
         
     }
-
-    public static function countAll(Cnx $cnx)
-    {
-        $consulta = $cnx->prepare('
-            SELECT COUNT(1)
-            FROM productos
-            WHERE fecha_baja IS NULL
-        ');
-        $consulta->execute();
-        return $consulta->fetchColumn();
-    }
-
 }
