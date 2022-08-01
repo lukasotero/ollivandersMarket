@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="../img/varios/logo.png " type="image/x-icon">
+
     <!--=============== BOOTSTRAP ===============-->
     <?php require_once('_bootstrap.php') ?>
 

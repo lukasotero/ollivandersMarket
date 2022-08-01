@@ -1,9 +1,9 @@
 <?php
 
-require_once('config/config.php');
-require_once('models/Cnx.php');
-require_once('models/Producto.php');
-require_once('helpers/helper_input.php');
+require_once('../config/config.php');
+require_once('../models/Cnx.php');
+require_once('../models/Producto.php');
+require_once('../helpers/helper_input.php');
 
 try{
     $cnx = new Cnx();

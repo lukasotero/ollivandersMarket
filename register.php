@@ -5,22 +5,22 @@
 
 <head>
     <!--=============== HEAD DEFAULT ===============-->
-    <?php require_once 'assets/php/dashboard/views/_head.php';?>
+    <?php require_once 'assets/views/_head.php';?>
 
     <!--=============== ICONS ===============-->
-    <?php require_once 'assets/php/dashboard/views/_icons.php';?>
+    <?php require_once 'assets/views/_icons.php';?>
 
     <!--=============== BOOTSTRAP ===============-->
-    <?php require_once 'assets/php/dashboard/views/_bootstrap.php';?>
+    <?php require_once 'assets/views/_bootstrap.php';?>
 
     <!--=============== CSS ===============-->
-    <?php require_once 'assets/php/dashboard/views/_cssContacto.php';?>
+    <?php require_once 'assets/views/_cssContacto.php';?>
 </head>
 
 <body>
     <div class="container-form">
 
-        <?php require_once 'assets/php/dashboard/helpers/helper_input.php'?>
+        <?php require_once 'assets/helpers/helper_input.php'?>
         <?php require_once 'assets/php/funcionesRegister.php'?>
 
         <form class="contact-form px-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST"
@@ -85,7 +85,7 @@
                 <span class="text"><?php echo $lang['return_login']?>
                     <a href="login.php" class="text"><?php echo $lang['return_click']?></a>
                 </span>
-                
+
                 <br>
 
                 <!-- IR AL INICIO -->

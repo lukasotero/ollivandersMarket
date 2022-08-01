@@ -5,10 +5,10 @@
 
 <head>
     <!--=============== HEAD DEFAULT ===============-->
-    <?php require_once('assets/php/dashboard/views/_head.php'); ?>
+    <?php require_once('assets/views/_head.php'); ?>
 
     <!--=============== ICONS ===============-->
-    <?php require_once('assets/php/dashboard/views/_icons.php'); ?>
+    <?php require_once('assets/views/_icons.php'); ?>
 
     <!--=============== SWIPER CSS ===============-->
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
@@ -486,7 +486,7 @@
             </div>
         </div>
 
-        <span class="footer__copy">&#169; Lucas De Palma, Tomas Ruiz y Lukas Otero.
+        <span class="footer__copy">&#169; Lucas De Palma y Lukas Otero.
             <?php echo $lang['footer_copy']?>.</span>
 
         <img src="assets/img/personajes/dumbledore.png" class="footer__dumbledore">

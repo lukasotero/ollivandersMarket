@@ -3,8 +3,8 @@
 require_once('assets/php/lang.php');
 
 //PHPMAILER
-require_once('assets/PHPMailer/src/PHPMailer.php');
-require_once('assets/PHPMailer/src/Exception.php');
+require_once('assets/php/PHPMailer/src/PHPMailer.php');
+require_once('assets/php/PHPMailer/src/Exception.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 

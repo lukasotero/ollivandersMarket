@@ -22,6 +22,6 @@ if (isset($_POST['submit'])) {
 
     //VALIDACION DE ADMINISTRADOR
     if (count($erroresLogin) == 0) {
-        header('Location: assets/php/dashboard/productos.php');
+        header('Location: assets/dashboard/productos.php');
     }
 }
