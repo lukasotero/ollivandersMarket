@@ -1,0 +1,341 @@
+/*=============== TIPOGRAFIA ===============*/
+@media (min-width: 1024px) {
+  :root {
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 2.2rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.2rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.8rem;
+    --smaller-font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 368px) {
+  /*===============  CASAS ===============*/
+  .hufflepuff-fix {
+    margin: 0;
+  }
+}
+
+/* PARA 'MOBILE M' EN ADELANTE */
+@media (min-width: 375px) {
+  /*===============  HOME ===============*/
+  .home__grupo {
+    justify-content: center;
+  }
+
+  /*=============== CONTACTO ===============*/
+  textarea {
+    width: 300px;
+    height: 200px;
+  }
+}
+
+/* PARA 'MOBILE L' EN ADELANTE */
+@media (min-width: 425px) {
+  /*=============== NAVBAR ===============*/
+  nav {
+    flex-direction: row;
+  }
+
+  .flex {
+    justify-content: space-around;
+  }
+
+  /*===============  HOME ===============*/
+  .home__grupo {
+    height: 280px;
+  }
+
+  /*===============  DESCUENTOS ===============*/
+  .descuento__img {
+    width: 225px;
+  }
+}
+
+/* PARA 'TABLET M' EN ADELANTE*/
+@media (min-width: 576px) {
+  /*===============  NAVBAR ===============*/
+  nav.flex-column {
+    flex-direction: row;
+  }
+
+  /*===============  HOME ===============*/
+  .home__grupo {
+    height: auto;
+  }
+
+  .img-bufanda {
+    object-position: 0 22px;
+    align-self: auto;
+  }
+
+  .img-collar {
+    object-position: 0 45px;
+    align-self: auto;
+  }
+
+  .img-mapa {
+    align-self: auto;
+  }
+
+  .home__detalles-img {
+    right: 1rem;
+  }
+
+  .container-data {
+    margin-top: 1rem;
+  }
+
+  /*=============== CONTACTO ===============*/
+  .contact-form {
+    width: 500px;
+  }
+
+  textarea {
+    width: 400px;
+    height: 150px;
+  }
+}
+
+@media (min-width: 720px) {
+  /*=============== NAVBAR ===============*/
+  .d-none {
+    display: block;
+  }
+
+  .d-block {
+    display: none;
+  }
+
+  /*=============== HOME ===============*/
+  .home__btns {
+    flex-direction: column;
+  }
+
+  .btn--flex {
+    margin-top: 1rem;
+    margin-left: 0;
+  }
+
+  .home__descripcion {
+    margin: 0;
+  }
+
+  /*=============== ACERCA DE NOSOTROS ===============*/
+  .about__img {
+    width: 250px;
+  }
+
+  /*=============== FOOTER ===============*/
+  .footer__container {
+    flex-direction: row;
+  }
+
+  .footer__container {
+    row-gap: 2rem;
+  }
+
+  .footer__contenido {
+    margin: 0 2rem;
+  }
+
+  .footer__dumbledore {
+    width: 130px;
+    top: 0;
+    right: -67px;
+  }
+
+  .footer__voldemort {
+    width: 130px;
+    top: 180px;
+    right: -67px;
+  }
+}
+
+/* PARA 'TABLET L' EN ADELANTE */
+@media (min-width: 768px) {
+  /*=============== CLASES GLOBALES ===============*/
+  .section {
+    padding: 5rem 0 2rem;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 1.5rem);
+  }
+
+  .swiper-pagination {
+    margin-top: 2rem;
+  }
+
+  /*=============== HOME ===============*/
+  .home__img {
+    height: 300px;
+  }
+
+  .img-mapa {
+    object-position: -65px 0;
+  }
+
+  .home__detalles-img {
+    right: 10rem;
+  }
+
+  /*=============== CASAS ===============*/
+  #casas .flex-column {
+    flex-direction: row;
+  }
+
+  .casas__data {
+    margin: 0 0.5rem;
+  }
+
+  /*=============== DESCUENTOS ===============*/
+  .descuento__img {
+    width: 325px;
+  }
+
+  /*=============== PRODUCTOS ===============*/
+  #product {
+    padding: 0 0 3rem;
+  }
+}
+
+/* PARA 'LAPTOP M' EN ADELANTE */
+@media (min-width: 950px) {
+  /*=============== NAVBAR ===============*/
+  .container-btn-hamburguesa {
+    flex-direction: row;
+    margin: 0;
+    width: auto;
+  }
+
+  .container-btn-hamburguesa li {
+    margin: 0 1rem;
+  }
+
+  .btn-hamburguesa {
+    display: none;
+  }
+
+  .item {
+    display: block;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  .d-block {
+    display: block;
+    margin-left: 1rem;
+  }
+
+  /*=============== HOME ===============*/
+  .home__detalles-img {
+    right: 16rem;
+  }
+
+  /*=============== FOOTER ===============*/
+  .footer .flex-column {
+    justify-content: space-around;
+  }
+
+  .footer__dumbledore {
+    width: 180px;
+    top: 15px;
+    right: -94px;
+  }
+
+  .footer__voldemort {
+    width: 180px;
+    top: 25px;
+    left: -83px;
+  }
+}
+
+/* PARA 'LAPTOP M' */
+@media (min-width: 992px) {
+  /*=============== CLASES GLOBALES ===============*/
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section__titulo {
+    font-size: var(--h1-font-size);
+    margin-bottom: 3rem;
+  }
+
+  /*=============== ACERCA DE NOSOTROS ===============*/
+  .about__img {
+    width: 300px;
+  }
+
+  .casas__img {
+    width: 200px;
+  }
+
+  /*=============== PRODUCTOS ===============*/
+  #product .section__titulo {
+    margin-bottom: 1rem;
+  }
+
+  .product__img {
+    width: 110px;
+  }
+
+  .product__titulo {
+    font-size: var(--h3-font-size);
+  }
+
+  /*=============== NUEVOS PRODUCTOS ===============*/
+  .nuevo__contenido {
+    width: 310px;
+    border-radius: 1rem;
+    padding: 2rem 0;
+  }
+
+  .nuevo__img {
+    width: 150px;
+  }
+
+  .nuevo__img,
+  .nuevo__subtitulo {
+    margin-bottom: var(--mb-1);
+  }
+
+  .nuevo__titulo {
+    font-size: var(--h3-font-size);
+  }
+}
+
+/* PARA 'LAPTOP' EN ADELANTE */
+@media (min-width: 1024px) {
+  /*=============== HOME ===============*/
+  .home__detalles-img {
+    right: 19rem;
+  }
+
+  .img-mapa {
+    object-position: -25px 0;
+  }
+
+  /*=============== CONTACTO ===============*/
+  .container-form {
+    height: 100vh;
+  }
+
+  textarea {
+    height: 100px;
+  }
+}
+
+/* PARA 'LAPTOP +' EN ADELANTE */
+@media (min-width: 1200px) {
+  /*=============== HOME ===============*/
+  .swiper-pagination {
+    margin-top: 2.5rem;
+  }
+}
