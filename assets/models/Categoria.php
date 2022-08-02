@@ -17,7 +17,7 @@ class Categoria extends ModeloPadre
     {
         $consulta = $cnx->prepare('
             SELECT id, nombre 
-            FROM categorias
+            FROM categoria
             ORDER BY nombre
         ');
         $consulta->execute();

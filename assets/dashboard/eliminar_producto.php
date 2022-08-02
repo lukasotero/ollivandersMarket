@@ -16,7 +16,6 @@ $ide = test_input( $_GET['ide'] ?? null );
 
 $producto = Producto::find($cnx, $ide);
 
-//SI EXISTE UN PRODUCTO CON ESE ID, LO ELIMINA
 if($producto){
     $producto -> delete($cnx);
 }
