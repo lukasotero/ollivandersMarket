@@ -2,8 +2,10 @@
 
 require_once('ModeloPadre.php');
 
-class Categoria extends ModeloPadre
+class TipoUsuario extends ModeloPadre
 {
+    const ADMINISTRADOR = 1;
+    const COMPRADOR = 2;
 
     public function __construct()
     {
@@ -17,7 +19,7 @@ class Categoria extends ModeloPadre
     {
         $consulta = $cnx->prepare('
             SELECT id, nombre 
-            FROM categoria
+            FROM tipo_usuario
             ORDER BY nombre
         ');
         $consulta->execute();

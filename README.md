@@ -9,7 +9,7 @@ _Tecnologias utilizadas_
 - [Javascript](https://devdocs.io/javascript/) - Vanilla JS (sin frameworks)
 - [PHP](https://www.php.net/) - Versión: 8.1.6
 - [MariaDB](https://mariadb.org/) - Versión: 10.4.24
-- [Bootstrap](https://getbootstrap.com/) - Versión: 5.1.3 (utilizado en algunas páginas)
+- [Bootstrap](https://getbootstrap.com/) - Versión: 5.2 (utilizado en algunas páginas)
 
 ## Configuraciones previas :gear:
 

@@ -1,10 +1,15 @@
 <?php
 
-require_once('../config/config.php');
-require_once('../models/Cnx.php');
-require_once('../models/Categoria.php');
-require_once('../models/Producto.php');
-require_once('../helpers/helper_input.php');
+require_once('../../helpers/autoload.php');
+require_once('../../models/Cnx.php');
+require_once('../../models/Categoria.php');
+require_once('../../models/Producto.php');
+require_once('../../helpers/helper_input.php');
+
+if(!Auth::isAdministrador())
+{
+    header('Location: index.php');
+}
 
 try{
     $cnx = new Cnx();
@@ -13,13 +18,11 @@ try{
     exit;
 }
 
-$ide = test_input( $_REQUEST['ide'] ?? null );
-
-$producto = Producto::find($cnx, $ide);
+$producto = new Producto();
 
 $errores = array();
 
-if( isset($_POST['submit']) ) 
+if( isset($_POST['submit']) )
 {
     $producto -> nombre = test_input( $_POST['nombre'] ?? null );
     $producto -> descripcion =  test_input( $_POST['descripcion'] ?? null ) ;
@@ -35,8 +38,8 @@ if( isset($_POST['submit']) )
 }
 
 $categorias = Categoria::all($cnx);
-$action = 'modificar_producto.php';
+$action = 'agregar_producto.php';
 
-require_once('../views/guardar_producto.php');
+require_once('../../views/guardar_producto.php');
 
 unset($cnx);

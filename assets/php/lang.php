@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 $idioma = (isset($_GET['lang'])) ? $_GET['lang'] : null;
 
 $lang = array(

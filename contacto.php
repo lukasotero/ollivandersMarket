@@ -1,94 +1,72 @@
-<?php require_once 'assets/php/lang.php';?>
+<?php
 
-<!DOCTYPE html>
-<html lang="es">
+require_once('assets/php/lang.php');
 
-<head>
-    <!--=============== HEAD DEFAULT ===============-->
-    <?php require_once 'assets/views/_head.php';?>
+require_once('assets/helpers/autoload.php');
+require_once('assets/models/Cnx.php');
+require_once('assets/helpers/helper_input.php');
 
-    <!--=============== ICONS ===============-->
-    <?php require_once 'assets/views/_icons.php';?>
+//PHPMAILER
+require_once('assets/php/PHPMailer/src/PHPMailer.php');
+require_once('assets/php/PHPMailer/src/Exception.php');
 
-    <!--=============== BOOTSTRAP ===============-->
-    <?php require_once 'assets/views/_bootstrap.php';?>
+use PHPMailer\PHPMailer\PHPMailer;
 
-    <!--=============== CSS ===============-->
-    <?php require_once 'assets/views/_cssContacto.php';?>
-</head>
+$errores = array();
 
-<body>
-    <div class="container-form">
+if (isset($_POST['submit'])) {
 
-        <?php require_once 'assets/helpers/helper_input.php'?>
-        <?php require_once 'assets/php/funcionesContacto.php'?>
+    $name = test_input($_POST['name'] ?? null);
+    $email = test_input($_POST['email'] ?? null);
+    $msg = test_input($_POST['msg'] ?? null);
 
-        <form class="contact-form px-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST"
-            enctype="multipart/form-data">
-            <span class="contact-form-title"><?php echo $lang['header_contacto'] ?></span>
+    //CONSTRUCCION DEL EMAIL
+    $to = 'lukas.otero@davinci.edu.ar';
+    $subject = 'Contacto desde la web';
 
-            <ul class="flex-form">
-                <?php foreach ($errores as $error): ?>
-                <li class="error"><?php echo $error ?></li>
-                <?php endforeach?>
-            </ul>
+    $body = <<<HTML
+        <h1>$subject</h1>
+        <p>De: $name / $email</p>
+        <h2>Mensaje</h2>
+        $msg
+    HTML;
 
-            <div class="container-inputs">
-                <div class="col-sm-12 mb-3">
-                    <label class="form-label"><?php echo $lang['contacto_nombre'] ?></label>
-                    <input required type="text" name="name" autocomplete="off" class="form-control"
-                        value="<?php echo $name ?>">
-                </div>
+    $mailer = new PHPMailer();
+    $mailer->setFrom($email, "$name");
+    $mailer->addAddress($to);
+    $mailer->Subject = $subject;
+    $mailer->msgHTML($body);
+    $mailer->AltBody = strip_tags($body);
+    $mailer->CharSet = 'UTF-8';
 
-                <div class="col-sm-12 mb-3">
-                    <label class="form-label">Email</label>
-                    <input required type="text" name="email" autocomplete="off" class="form-control"
-                        placeholder="<?php echo $lang['contacto_placeholder_email'] ?>" value="<?php echo $email ?>">
-                </div>
+    //VALIDACION DEL NOMBRE
+    if (strlen($name) <= 2 || strlen($name) >= 20 || !preg_match("/^[a-zA-ZÀ-ÿ]*$/", $name) || empty($name)) {
+        array_push($errores, $lang['contacto_error_nombre']);
+    }
 
-                <div class="col-sm-12 mb-3">
-                    <label class="form-label"><?php echo $lang['contacto_mensaje'] ?></label>
-                    <textarea required name="msg" autocomplete="off" class="form-control"
-                        placeholder="<?php echo $lang['contacto_placeholder_mensaje'] ?>"></textarea>
-                </div>
-            </div>
+    //VALIDACION DEL EMAIL
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($email) <= 4 || strlen($email) >= 40 || empty($email)) {
+        array_push($errores, $lang['contacto_error_email']);
+    }
 
-            <div class="container-contact-form-btn">
-                <div class="wrap-contact-form-btn">
-                    <div class="contact-form-bgbtn"></div>
-                    <button name="submit" class="contact-form-btn"><?php echo $lang['contacto_btn'] ?></button>
-                </div>
-            </div>
+    //VALIDACION DEL MENSAJE
+    if (empty($msg)) {
+        array_push($errores, $lang['contacto_error_mensaje']);
+    }
 
-            <!-- BOTON LANG -->
-            <div class="flex">
-                <div class="card">
-                    <ul class="langButton">
-                        <li id="btnEs"><a href="?lang=es"><span class="fi fi-es"></span></a></li>
-                        <li id="btnPt"><a href="?lang=pt"><span class="fi fi-pt"></span></a></li>
-                        <li id="btnEn"><a href="?lang=en"><span class="fi fi-us"></span></a></li>
-                    </ul>
-                </div>
-            </div>
+    //SI NO HAY ERRORES ENVIA EL CORREO
+    if (count($errores) == 0) {
+        $rta = $mailer->send();
 
-            <div class="return">
-                <!-- IR AL LOGIN -->
-                <span class="text"><?php echo $lang['return_login']?>
-                    <a href="login.php" class="text"><?php echo $lang['return_click']?></a>
-                </span>
+        if ($rta) {
+            header('Location: contacto.php');
+            die();
+        } else {
+            array_push($errores, $lang['contacto_error_envio']);
+        }
+    }
+}
 
-                <br>
+require_once ('assets/views/_contacto.php');
 
-                <!-- IR AL INICIO -->
-                <span class="text"><?php echo $lang['return_index']?>
-                    <a href="index.php" class="text"><?php echo $lang['return_click']?></a>
-                </span>
-            </div>
-        </form>
-    </div>
-
-    <!--=============== GLOBAL JS ===============-->
-    <script src="assets/js/btnLang.js"></script>
-</body>
-
-</html>
+unset($cnx);

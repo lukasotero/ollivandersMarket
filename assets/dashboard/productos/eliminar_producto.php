@@ -1,9 +1,14 @@
 <?php
 
-require_once('../config/config.php');
-require_once('../models/Cnx.php');
-require_once('../models/Producto.php');
-require_once('../helpers/helper_input.php');
+require_once('../../helpers/autoload.php');
+require_once('../../models/Cnx.php');
+require_once('../../models/Producto.php');
+require_once('../../helpers/helper_input.php');
+
+if(!Auth::isAdministrador())
+{
+    header('Location: index.php');
+}
 
 try{
     $cnx = new Cnx();

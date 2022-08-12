@@ -68,7 +68,6 @@ $lang = array(
     "footer_descripcion" => "Entre no mundo da <b>Magia</b>",
     "footer_titulo_2" => "Sobre",
     "footer_link_2" => "Casas da",
-    "footer_link_4" => "Inscreva-se para",
     "footer_titulo_3" => "Nossos serviços",
     "footer_link_5" => "Preços",
     "footer_link_6" => "Descontos",
@@ -96,12 +95,11 @@ $lang = array(
     "contacto_error_email" => "Você deve inserir um e-mail válido",
     "contacto_error_mensaje" => "Você deve digitar uma mensagem",
     "contacto_error_envio" => "Por algum motivo a mensagem não foi enviada",
-    "login_error_password" => "Você deve digitar uma senha correta",
+    "login_error" => "Os dados inseridos estão incorretos",
     "register_error_password" => "Senhas nao sao as mesmas",
 
     //RETURNS
-    "return_login" => "Para acessar sua conta",
-    "return_register" => "Para criar sua conta",
     "return_index" => "Para voltar à página principal",
+    "return_register" => "Você não tem uma conta?",
     "return_click" => "clique aqui",
 );

@@ -11,7 +11,7 @@
     <!--=============== BOOTSTRAP ===============-->
     <?php require_once('_bootstrap.php') ?>
 
-    <title>Dashboard - Productos</title>
+    <title>Dashboard - Usuarios</title>
 </head>
 
 <body>
@@ -23,10 +23,10 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Categoría</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tipo de usuario</th>
                     <th scope="col">Acciones</th>
-                    <th scope="col"><a href="agregar_producto.php" style="text-decoration: none;">
+                    <th scope="col"><a href="agregar_usuario.php" style="text-decoration: none;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-plus-lg" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -36,16 +36,16 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if(count($productos) > 0): ?>
+                <?php if(count($usuarios) > 0): ?>
 
-                <?php foreach($productos as $pro): ?>
+                <?php foreach($usuarios as $usu): ?>
                 <tr>
-                    <td><?php echo $pro -> id ?></td>
-                    <td><?php echo $pro -> nombre ?></td>
-                    <td>$<?php echo number_format($pro -> precio, 2, ',', '.') ?></td>
-                    <td><?php echo $pro -> nombre_categoria ?></td>
+                    <td><?php echo $usu -> id ?></td>
+                    <td><?php echo $usu -> nombre ?></td>
+                    <td><?php echo $usu -> email ?></td>
+                    <td><?php echo $usu -> id_tipo_usuario ?></td>
                     <td>
-                        <a class="text text-primary" href="modificar_producto.php?ide=<?php echo $pro -> id ?>"><svg
+                        <a class="text text-primary" href="modificar_usuario.php?ide=<?php echo $usu -> id ?>"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path
@@ -54,7 +54,7 @@
                                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                             </svg></a>
                         <a class="text text-danger" href="#"
-                            onClick="eliminarProducto('eliminar_producto.php?ide=<?php echo $pro -> id ?>')"><svg
+                            onClick="eliminarUsuario('eliminar_usuario.php?ide=<?php echo $usu -> id ?>')"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                 <path
@@ -114,7 +114,7 @@
 
     <!--=============== ELIMINAR PRODUCTO JS ===============-->
     <script>
-    function eliminarProducto(p_url_eliminar) {
+    function eliminarUsuario(p_url_eliminar) {
 
         Swal.fire({
             title: 'Está segura/o?',

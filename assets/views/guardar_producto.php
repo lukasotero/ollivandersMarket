@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="../img/varios/logo.png " type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo BASE_URL ?>assets/img/varios/logo.png " type="image/x-icon">
 
     <!--=============== BOOTSTRAP ===============-->
     <?php require_once('_bootstrap.php') ?>
@@ -17,7 +17,7 @@
 <body>
     <?php require_once('_nav.php') ?>
 
-    <div class="container">
+    <div class="container mt-5 pt-3">
         <h1 class="text-center">Guardar producto</h1>
 
         <ul>
@@ -60,6 +60,9 @@
             <a class="btn btn-danger" href="productos.php">Cancelar</a>
         </form>
     </div>
+
+    <!--=============== BOOTSTRAP JS ===============-->
+    <?php require_once('_bootstrapJs.php') ?>
 </body>
 
 </html>

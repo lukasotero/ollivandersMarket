@@ -21,28 +21,28 @@ class Producto extends ModeloPadre
         ));
     }
 
+    //VALIDAR UN PRODUCTO
     public function validate()
     {
         $errores = array();
 
-        if( !$this->nombre ){
+        if(!$this->nombre){
             $errores['nombre'] = 'Ingresar un nombre';
         }
 
-        if( !$this->descripcion ) {
+        if(!$this->descripcion) {
             $errores['descripcion'] = 'Ingresar una descripción';
         }
 
-        if( !filter_var($this->precio, FILTER_VALIDATE_FLOAT) ) {
+        if(!filter_var($this->precio, FILTER_VALIDATE_FLOAT)) {
             $errores['precio'] = 'Ingresar un precio';
         }
 
-        if( !$this->id_categoria ) { 
+        if(!$this->id_categoria) { 
             $errores['id_categoria'] = 'Ingresar una categoría';
         }
 
         return $errores;
-
     }
 
     public function save(Cnx $cnx)

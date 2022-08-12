@@ -1,9 +1,13 @@
 <?php
 
-require_once('../config/config.php');
-require_once('../models/Cnx.php');
-require_once('../models/Producto.php');
-require_once('../helpers/helper_paginador.php');
+require_once('../../helpers/autoload.php');
+require_once('../../models/Cnx.php');
+require_once('../../models/Producto.php');
+require_once('../../helpers/helper_paginador.php');
+
+if(Auth::isComprador()) {
+    header('Location: index.php');
+}
 
 try{
     $cnx = new Cnx();
@@ -31,6 +35,6 @@ $cantidad_registros = Producto::countAll($cnx);
 
 $paginas = paginador($pag, $cantidad_registros, $registros_por_pagina);
 
-require_once('../views/lista_productos.php');
+require_once('../../views/lista_productos.php');
 
 unset($cnx);

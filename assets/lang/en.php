@@ -68,7 +68,6 @@ $lang = array(
     "footer_descripcion" => "Step into the <b>Magical</b> World",
     "footer_titulo_2" => "About",
     "footer_link_2" => "Hogwarts houses",
-    "footer_link_4" => "Enroll at",
     "footer_titulo_3" => "Our services",
     "footer_link_5" => "Prices",
     "footer_link_6" => "Discounts",
@@ -96,12 +95,11 @@ $lang = array(
     "contacto_error_email" => "You must enter a valid email",
     "contacto_error_mensaje" => "You must enter a message",
     "contacto_error_envio" => "For some reason the message was not sent",
-    "login_error_password" => "You must enter a correct password",
+    "login_error" => "The data entered is incorrect",
     "register_error_password" => "Passwords are not the same",
 
     //RETURNS
-    "return_login" => "To access your account",
-    "return_register" => "To create your account",
     "return_index" => "To return to the main page",
+    "return_register" => "You do not have an account?",
     "return_click" => "click here",
 );

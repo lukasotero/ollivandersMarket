@@ -61,6 +61,12 @@
     flex-direction: row;
   }
 
+  /*=============== MODAL ===============*/
+  /* >>> LOGIN ICON <<< */
+  #btn-abrir-modal {
+    margin: 0;
+  }
+
   /*===============  HOME ===============*/
   .home__grupo {
     height: auto;
@@ -100,15 +106,6 @@
 }
 
 @media (min-width: 720px) {
-  /*=============== NAVBAR ===============*/
-  .d-none {
-    display: block;
-  }
-
-  .d-block {
-    display: none;
-  }
-
   /*=============== HOME ===============*/
   .home__btns {
     flex-direction: column;
@@ -204,34 +201,6 @@
 
 /* PARA 'LAPTOP M' EN ADELANTE */
 @media (min-width: 950px) {
-  /*=============== NAVBAR ===============*/
-  .container-btn-hamburguesa {
-    flex-direction: row;
-    margin: 0;
-    width: auto;
-  }
-
-  .container-btn-hamburguesa li {
-    margin: 0 1rem;
-  }
-
-  .btn-hamburguesa {
-    display: none;
-  }
-
-  .item {
-    display: block;
-  }
-
-  .d-none {
-    display: none;
-  }
-
-  .d-block {
-    display: block;
-    margin-left: 1rem;
-  }
-
   /*=============== HOME ===============*/
   .home__detalles-img {
     right: 16rem;

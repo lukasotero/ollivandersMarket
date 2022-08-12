@@ -1,6 +1,8 @@
 <?php
 
-require_once('../config/config.php');
+$path = dirname(__FILE__, 2);
+
+require_once("$path/config/config.php");
 
 class Cnx extends PDO
 {

@@ -1,106 +1,60 @@
-<?php require_once 'assets/php/lang.php';?>
+<?php
 
-<!DOCTYPE html>
-<html lang="es">
+require_once('assets/php/lang.php');
 
-<head>
-    <!--=============== HEAD DEFAULT ===============-->
-    <?php require_once 'assets/views/_head.php';?>
+require_once('assets/helpers/autoload.php');
+require_once('assets/models/Cnx.php');
+require_once('assets/helpers/helper_input.php');
 
-    <!--=============== ICONS ===============-->
-    <?php require_once 'assets/views/_icons.php';?>
+if(Auth::validate()) {
+    Auth::destroy();
+}
 
-    <!--=============== BOOTSTRAP ===============-->
-    <?php require_once 'assets/views/_bootstrap.php';?>
+try {
+    $cnx = new Cnx();
+} catch(PDOException $e) {
+    echo 'Ha ocurrido un error';
+    exit;
+}
 
-    <!--=============== CSS ===============-->
-    <?php require_once 'assets/views/_cssContacto.php';?>
-</head>
+$errores = array();
 
-<body>
-    <div class="container-form">
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        <?php require_once 'assets/helpers/helper_input.php'?>
-        <?php require_once 'assets/php/funcionesRegister.php'?>
+    $name = test_input($_POST['name'] ?? null);
+    $email = test_input($_POST['email'] ?? null);
+    $password = test_input($_POST['password'] ?? null);
+    $password2 = test_input($_POST['password2'] ?? null);
 
-        <form class="contact-form px-5" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST"
-            enctype="multipart/form-data">
-            <span class="contact-form-title"><?php echo $lang['register_titulo'] ?></span>
+    $usuario = Usuario::register($cnx, $name, $email, $password);
 
-            <!-- ERRORES -->
-            <ul class="flex">
-                <?php foreach ($erroresRegister as $error): ?>
-                <li class="error"><?php echo $error ?></li>
-                <?php endforeach?>
-            </ul>
+    //VALIDACION DEL NOMBRE
+    if (strlen($name) <= 2 || strlen($name) >= 51 || !preg_match("/^[a-zA-Z ]*$/", $name) || empty($name)) {
+        array_push($errores, $lang['contacto_error_nombre']);
+    }
 
-            <div class="container-inputs">
-                <div class="col-sm-12 mb-3">
-                    <label class="form-label"><?php echo $lang['contacto_nombre'] ?></label>
-                    <input required type="text" name="nameRegister" autocomplete="off" class="form-control"
-                        value="<?php echo $nameRegister ?>">
-                </div>
+    //VALIDACION DEL EMAIL
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email)) {
+        array_push($errores, $lang['contacto_error_email']);
+    }
 
-                <div class="col-sm-12 mb-3">
-                    <label class="form-label">Email</label>
-                    <input required type="text" name="emailRegister" autocomplete="off" class="form-control"
-                        placeholder="<?php echo $lang['contacto_placeholder_email'] ?>"
-                        value="<?php echo $emailRegister ?>">
-                </div>
+    //VALIDACION DE LA CONTRASEÑA 1
+    if (empty($password) || strlen($password) <= 3) {
+        array_push($errores, $lang['login_error_password']);
+    }
 
-                <div class="col-sm-12 mb-3">
-                    <label class="form-label"><?php echo $lang['login_password_1'] ?></label>
-                    <input required type="password" name="passwordRegister1" autocomplete="off" class="form-control"
-                        value="<?php echo $passwordRegister1 ?>">
-                </div>
+    //VALIDACION DE LA CONTRASEÑA 2
+    if ($password != $password2) {
+        array_push($errores, $lang['register_error_password']);
+    }
 
-                <div class="col-sm-12 mb-3">
-                    <label class="form-label"><?php echo $lang['register_password_2'] ?></label>
-                    <input required type="password" name="passwordRegister2" autocomplete="off" class="form-control"
-                        value="<?php echo $passwordRegister2 ?>">
-                </div>
+    //SI NO HAY ERRORES TE REGISTRA
+    if ($usuario && count($errores) == 0) {
+        Auth::create($usuario);
+        header('Location: productos_home.php');
+    }
+}
 
-            </div>
+require_once('assets/views/_register.php');
 
-            <div class="container-contact-form-btn">
-                <div class="wrap-contact-form-btn">
-                    <div class="contact-form-bgbtn"></div>
-                    <button name="submit" class="contact-form-btn"><?php echo $lang['register_btn'] ?></button>
-                </div>
-            </div>
-
-            <!-- BOTON LANG -->
-            <div class="flex">
-                <div class="card">
-                    <ul class="langButton">
-                        <li id="btnEs"><a href="?lang=es"><span class="fi fi-es"></span></a></li>
-                        <li id="btnPt"><a href="?lang=pt"><span class="fi fi-pt"></span></a></li>
-                        <li id="btnEn"><a href="?lang=en"><span class="fi fi-us"></span></a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="return">
-                <!-- IR AL LOGIN -->
-                <span class="text"><?php echo $lang['return_login']?>
-                    <a href="login.php" class="text"><?php echo $lang['return_click']?></a>
-                </span>
-
-                <br>
-
-                <!-- IR AL INICIO -->
-                <span class="text"><?php echo $lang['return_index']?>
-                    <a href="index.php" class="text"><?php echo $lang['return_click']?></a>
-                </span>
-            </div>
-        </form>
-    </div>
-
-    <!--=============== LOCAL JS ===============-->
-    <script src="assets/js/login.js"></script>
-
-    <!--=============== GLOBAL JS ===============-->
-    <script src="assets/js/btnLang.js"></script>
-</body>
-
-</html>
+unset($cnx);
