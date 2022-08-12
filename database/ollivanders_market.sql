@@ -99,7 +99,10 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `id_tipo_usuario` (`id_tipo_usuario`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
+
+INSERT INTO `usuario` (`id`, `nombre`, `email`, `password`, `id_tipo_usuario`, `fecha_alta`, `fecha_modificacion`, `fecha_baja`) VALUES
+  (1, 'admin', 'admin@gmail.com', 'admin', 1, '2022-01-01 00:00:00', '2022-01-01 00:00:00', NULL);
 
 --
 -- Constraints para la tabla `producto`
