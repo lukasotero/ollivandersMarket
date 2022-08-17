@@ -63,7 +63,7 @@
 
   /*=============== MODAL ===============*/
   /* >>> LOGIN ICON <<< */
-  #btn-abrir-modal {
+  .open-modal {
     margin: 0;
   }
 
@@ -92,6 +92,11 @@
 
   .container-data {
     margin-top: 1rem;
+  }
+
+  /*=============== PRODUCTOS HOME ===============*/
+  .main-filtro {
+    flex-direction: row;
   }
 
   /*=============== CONTACTO ===============*/

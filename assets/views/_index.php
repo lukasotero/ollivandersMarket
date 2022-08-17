@@ -41,28 +41,21 @@
             </div>
 
             <!-- BOTON LOGIN -->
-            <input type="checkbox" id="show">
-
-            <label for="show" class="show-modal">
+            <button type="button" class="open-modal">
                 <svg class="login-svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-person" viewBox="0 0 16 16">
                     <path
                         d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                 </svg>
-            </label>
+            </button>
 
-            <div class="container-modal">
-                <div class="modal-box">
+            <div class="modal">
+                <div class="modal-dialog">
+                    <button class="close-modal">✕</button>
+
                     <?php if(Auth::isAdministrador()) { require_once('assets/views/_admin.php'); } ?>
                     <?php if(Auth::isComprador()) { require_once('assets/views/_usuario.php'); } ?>
-                    <?php if(!Auth::isComprador() && !Auth::isAdministrador()) { require_once('assets/views/_login.php'); } ?>
-                    <label for="show" class="btn-cerrar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-x" viewBox="0 0 16 16">
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                    </label>
+                    <?php if(!Auth::validate())  { require_once('assets/views/_login.php'); } ?>
                 </div>
             </div>
 
@@ -189,7 +182,7 @@
 
                 <h2 class="section__titulo"><?php echo $lang['aboutUs_titulo']?> <b>Ollivander's</b><br>Market</h2>
                 <p class="about__descripcion"><?php echo $lang['aboutUs_descripcion']?></p>
-                <a href="#" class="btn"><?php echo $lang['aboutUs_btn']?></a>
+                <button id="btn-login" class="btn"><?php echo $lang['aboutUs_btn']?></button>
             </div>
         </section>
 

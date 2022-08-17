@@ -24,7 +24,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if($usuario) {
         Auth::create($usuario);
-        header('Location: productos_home.php');
+
+        if (Auth::isAdministrador()) {
+            header('Location: assets/dashboard/productos/productos.php');
+        } else {
+            header('Location: productos_home.php');
+        }
     } else {
         $error = $lang['login_error'];
     }
