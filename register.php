@@ -26,16 +26,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = test_input($_POST['password'] ?? null);
     $password2 = test_input($_POST['password2'] ?? null);
 
-    $usuario = Usuario::register($cnx, $name, $email, $password);
-
     //VALIDACION DEL NOMBRE
     if (strlen($name) <= 2 || strlen($name) >= 51 || !preg_match("/^[a-zA-Z ]*$/", $name) || empty($name)) {
         array_push($errores, $lang['contacto_error_nombre']);
     }
 
     //VALIDACION DEL EMAIL
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email)) {
-        array_push($errores, $lang['contacto_error_email']);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($email) || Usuario::findByEmail($cnx, $email)) {
+        if (Usuario::findByEmail($cnx, $email)) {
+            array_push($errores, $lang['contacto_error_email_existente']);
+        } else {
+            array_push($errores, $lang['contacto_error_email']);
+        }
     }
 
     //VALIDACION DE LA CONTRASEÑA 1
@@ -49,7 +51,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     //SI NO HAY ERRORES TE REGISTRA
-    if ($usuario && count($errores) == 0) {
+    if (count($errores) == 0) {
+        $usuario = Usuario::register($cnx, $name, $email, $password);
         Auth::create($usuario);
         header('Location: productos_home.php');
     }

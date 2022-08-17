@@ -93,6 +93,7 @@ $lang = array(
     //ERRORES
     "contacto_error_nombre" => "Você deve inserir um nome correto",
     "contacto_error_email" => "Você deve inserir um e-mail válido",
+    "contacto_error_email_existente" => "Este e-mail já está registrado",
     "contacto_error_mensaje" => "Você deve digitar uma mensagem",
     "contacto_error_envio" => "Por algum motivo a mensagem não foi enviada",
     "login_error" => "Os dados inseridos estão incorretos",

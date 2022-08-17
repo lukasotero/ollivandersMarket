@@ -27,4 +27,4 @@ Ya que el proyecto no se encuentra en un servidor se deberan aplicar algunas con
 
 ## Consideración previa :raised_hands:
 
-:point_right: En la base de datos existe únicamente un administrador, con el fin de hacer los testeos en la web. El administrador no tiene la contraseña hasheada, pero los nuevos usuarios que se registrarán si. En caso de querer crear más usuarios deberá ir al registro de la página.
+:point_right: En la base de datos no existe ningun usuario, por lo tanto, únicamente el primer usuario que se registre va a ser el `administrador`, los demas usuarios van a tener el rol de `comprador`.
