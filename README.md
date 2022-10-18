@@ -20,7 +20,7 @@ Ya que el proyecto no se encuentra en un servidor se deberan aplicar algunas con
 :point_right: Las configuraciones estan en `assets/config/config.php` <br>
 
 **_Para el envio del formulario:_** <br>
-:point_right: Se deberá cambiar la dirección de correo electrónico donde el servidor o localhost apunta. Este archivo se encuentra en `assets/php/funcionesContacto.php`, más precisamente en la linea 16 del mismo. <br>
+:point_right: Se deberá cambiar la dirección de correo electrónico donde el servidor o localhost apunta. Este archivo se encuentra en la raiz del proyecto `contacto.php`, más precisamente en la linea 24 del mismo. <br>
 
 **_Para el servidor:_** <br>
 :point_right: El archivo `.htaccess` se encuentra en la raiz del repositorio. <br>
